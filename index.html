@@ -50,14 +50,12 @@
             border-radius: 50%;
             border: 3px solid transparent;
             background: linear-gradient(45deg, #FF1E1E, #1EFFF3) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, 
-                         linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) padding-box, 
-                  linear-gradient(#fff 0 0);
-            -webkit-mask-composite: destination-out;
-            mask-composite: exclude;
-            animation: borderRotate 10s linear infinite;
         }
+        .profile-container img {
+        width: 100%;
+            height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire circle */
+}
 
         @keyframes borderRotate {
             from { transform: rotate(0deg); }
@@ -166,7 +164,7 @@
             <div class="text-center">
                 <div class="flex justify-center mb-8">
                     <div class="profile-container neon-border">
-                        <img src="./images/Methma.jpg" alt="Methma Wickramasinghe" class="w-full h-full object-cover">
+                        <img src="./images/Methma_1.jpg" alt="Methma Wickramasinghe" class="w-full h-full">
                     </div>
                 </div>
                 <h1 class="text-6xl md:text-8xl font-bold mb-4 gradient-text">
