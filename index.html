@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
         .gradient-text {
             background: linear-gradient(45deg, #FF1E1E, #FF9C1E, #FFF01E, #1EFF1E, #1EFFF3, #1E56FF, #991EFF);
@@ -138,7 +140,217 @@
             transform: translateX(-50%);
         }
 
+        /* Mobile Responsive Media Queries */
+        @media (max-width: 768px) {
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.2;
+            }
+            
+            .text-6xl {
+                font-size: 2.5rem;
+            }
+            
+            .text-8xl {
+                font-size: 3rem;
+            }
+            
+            .text-4xl {
+                font-size: 2rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+            
+            .text-xl {
+                font-size: 1.125rem;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            
+            .grid-cols-5 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            
+            .tech-icon {
+                padding: 1rem;
+            }
+            
+            .tech-icon i {
+                font-size: 2rem !important;
+                margin-bottom: 0.5rem;
+            }
+            
+            .card-3d {
+                padding: 1.5rem;
+            }
+            
+            .px-6 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .py-20 {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            
+            .mb-16 {
+                margin-bottom: 2rem;
+            }
+            
+            .gap-8 {
+                gap: 1rem;
+            }
+            
+            .gap-12 {
+                gap: 1.5rem;
+            }
+            
+            nav .hidden {
+                display: none;
+            }
+            
+            .project-card img {
+                height: 150px;
+            }
+        }
         
+        @media (max-width: 640px) {
+            .profile-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            .text-6xl, .text-8xl {
+                font-size: 2rem;
+            }
+            
+            .text-4xl {
+                font-size: 1.5rem;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .md\\:grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .lg\\:grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-icon i {
+                font-size: 1.5rem !important;
+            }
+            
+            .card-3d {
+                padding: 1rem;
+            }
+            
+            .social-icon {
+                font-size: 1.5rem;
+            }
+            
+            .project-card img {
+                height: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            h1 {
+                font-size: 1.5rem !important;
+                margin-bottom: 1rem;
+            }
+            
+            p {
+                font-size: 0.9rem;
+            }
+            
+            .card-3d {
+                padding: 0.75rem;
+            }
+            
+            .tech-icon {
+                padding: 0.75rem;
+            }
+            
+            .px-6 {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            
+            .py-20 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+        }
+
+        /* Navigation mobile menu */
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #1EFFF3;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            nav .hidden {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-black text-gray-100">
@@ -155,12 +367,23 @@
                         <a href="#projects" class="hover:gradient-text transition-all">PROJECTS</a>
                         <a href="#contact" class="hover:gradient-text transition-all">CONTACT</a>
                     </div>
+                    <div class="hamburger md:hidden" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="mobile-menu" id="mobile-menu">
+                    <a href="#home" onclick="toggleMobileMenu()">HOME</a>
+                    <a href="#about" onclick="toggleMobileMenu()">ABOUT</a>
+                    <a href="#projects" onclick="toggleMobileMenu()">PROJECTS</a>
+                    <a href="#contact" onclick="toggleMobileMenu()">CONTACT</a>
                 </div>
             </div>
         </nav>
 
         <!-- Hero Section with Profile Picture -->
-        <section id="home" class="min-h-screen flex items-center justify-center relative">
+        <section id="home" class="pt-16 min-h-screen flex items-center justify-center relative">
             <div class="text-center">
                 <div class="flex justify-center mb-8">
                     <div class="profile-container neon-border">
