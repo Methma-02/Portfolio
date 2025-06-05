@@ -779,9 +779,12 @@
                 to_email: 'wickramasinghemethma@gmail.com',
                 from_name: name,
                 from_email: email,
+                reply_to: email,
                 name: name,
                 message: message,
-                time: new Date().toLocaleString()
+                time: new Date().toLocaleString(),
+                sender_override: email 
+                
             };
             
             console.log("Sending email with params:", templateParams); // For debugging
